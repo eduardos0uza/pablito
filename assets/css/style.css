@@ -35,11 +35,15 @@ body {
 
 .hero { position: relative; }
 .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(50% 60% at 20% 20%, rgba(233,64,87,.35), transparent 60%), radial-gradient(40% 50% at 80% 30%, rgba(249,211,113,.25), transparent 55%); filter: blur(40px); z-index: -1; }
-.hero-content { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: center; }
+.hero-content { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; align-items: center; }
+.hero-text { text-align: center; justify-self: end; max-width: 640px; }
 .title { font-family: 'Great Vibes', cursive; font-size: clamp(40px, 7vw, 72px); color: #fff; margin: 0; text-shadow: 0 6px 18px rgba(0,0,0,.3); }
 .subtitle { font-weight: 700; margin: 6px 0 12px; color: var(--muted); letter-spacing: .5px; }
-.romance { font-size: 18px; margin: 0 0 14px; color: #eaeaf0; }
-.countdown { display: flex; gap: 14px; margin: 12px 0; flex-wrap: wrap; }
+.romance { font-size: 22px; margin: 0 0 14px; color: #f2e8ff; font-weight: 600; }
+@media (max-width: 480px) {
+  .romance { font-size: 20px; }
+}
+.countdown { display: flex; gap: 10px; margin: 12px 0; flex-wrap: wrap; justify-content: center; }
 .count-item { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: 16px; padding: 12px 14px; text-align: center; min-width: 78px; box-shadow: var(--shadow); backdrop-filter: blur(6px); }
 .count-item span { display: block; font-size: 24px; font-weight: 700; color: var(--accent); }
 .together { margin-top: 10px; }

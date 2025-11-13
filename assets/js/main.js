@@ -28,27 +28,28 @@ let togetherTimer;
 function startTogetherCounter() {
   if (togetherTimer) clearInterval(togetherTimer);
   const startStr = state.startDate || '2025-08-15';
+  // Exibir somente valores fixos conforme solicitado
   togetherStartLabel.textContent = formatPTBR(startStr);
-  const start = new Date(startStr).getTime();
-  togetherTimer = setInterval(() => {
-    const nowMs = Date.now();
-    let diff = nowMs - start;
-    if (diff < 0) diff = 0;
-    const daysTotal = Math.floor(diff / (1000 * 60 * 60 * 24));
-    tgDaysTotal.textContent = String(daysTotal);
+  tgDaysTotal.textContent = '90';
+  if (tgMonths) tgMonths.textContent = '3';
+  if (tgDaysCal) tgDaysCal.textContent = '';
+  // Não iniciar intervalo, pois os valores são fixos
+}
 
-    // Breakdown calendário (anos, meses, dias)
-    const from = new Date(startStr);
-    const to = new Date(nowMs);
-    const { y, m, d } = calendarDiff(from, to);
-    if (tgMonths) tgMonths.textContent = String(m);
-    if (tgDaysCal) tgDaysCal.textContent = String(d);
-  }, 1000);
+function parseLocalDate(dStr) {
+  if (!dStr) return new Date(NaN);
+  // Evitar o deslocamento de dia causado por parsing UTC de 'YYYY-MM-DD'
+  const parts = dStr.split('-');
+  if (parts.length === 3) {
+    const [y, m, d] = parts.map(p => parseInt(p, 10));
+    return new Date(y, (m || 1) - 1, d || 1);
+  }
+  return new Date(dStr);
 }
 
 function formatPTBR(dStr) {
   if (!dStr) return '';
-  const d = new Date(dStr);
+  const d = parseLocalDate(dStr);
   const dd = String(d.getDate()).padStart(2, '0');
   const mm = String(d.getMonth() + 1).padStart(2, '0');
   const yyyy = d.getFullYear();
@@ -325,6 +326,9 @@ function setupReveal() {
 
 function init() {
   loadState();
+  // Forçar a data correta solicitada
+  state.startDate = '2025-08-15';
+  saveState();
   // Estado inicial
   if (startDateInput) startDateInput.value = state.startDate || '2025-08-15';
   startTogetherCounter();
