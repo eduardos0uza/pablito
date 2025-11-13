@@ -106,6 +106,7 @@ function setupMusic() {
   const fixed = audio?.dataset?.src;
   if (fixed) {
     audio.src = fixed;
+    try { audio.load(); } catch (_) {}
     audio.volume = parseFloat(volume.value || '0.8');
     if (stopMusic) stopMusic.disabled = false;
   }
@@ -119,10 +120,10 @@ function setupMusic() {
         setTimeout(() => { playPause.textContent = prev || 'Retomar Música'; }, 2000);
       }
       if (stopMusic) stopMusic.disabled = true;
-      // Remover src inválido para evitar novos erros
+      // Mantém o src para permitir novas tentativas
       try { audio.pause(); } catch (_) {}
-      audio.removeAttribute('src');
     });
+    audio.addEventListener('canplay', async () => { await tryAutoplay(); });
     audio.addEventListener('loadeddata', () => {
       if (stopMusic) stopMusic.disabled = false;
     });
@@ -167,6 +168,13 @@ async function tryAutoplay() {
     }
   } catch (_) {
     if (playPause) playPause.textContent = 'Retomar Música';
+    // Tentar novamente após breve intervalo
+    setTimeout(async () => {
+      try {
+        await audio.play();
+        if (playPause) playPause.textContent = 'Pausar Música';
+      } catch (_) {}
+    }, 600);
   }
 }
 
@@ -333,6 +341,10 @@ function init() {
   setupIntro();
   // Tentar autoplay apenas se não houver overlay
   if (!introOverlay) { tryAutoplay(); }
+  // Reforçar tentativa em eventos de visibilidade e interação
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && !introOverlay) tryAutoplay(); });
+  window.addEventListener('pageshow', () => { if (!introOverlay) tryAutoplay(); });
+  ['pointerdown','keydown','touchstart'].forEach(evt => document.addEventListener(evt, () => { if (audio?.paused) tryAutoplay(); }, { once: true }));
   setupTimeline();
   setupGallery();
   setupQuotes();
