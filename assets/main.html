@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feliz 3 Meses de Namoro — Pablo & Catharine</title>
+    <meta name="description" content="Site comemorativo romântico celebrando 3 meses de namoro de Pablo e Catharine: nossa história, galeria, música, mensagens e lugares especiais." />
+    <link rel="canonical" href="https://example.com/3meses" />
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:title" content="Feliz 3 Meses de Namoro — Pablo & Catharine" />
+    <meta property="og:description" content="Nossa história, galeria, música e mensagens em um site especial." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/img/hero.jpg" />
+    <meta property="og:url" content="https://example.com/3meses" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Feliz 3 Meses de Namoro — Pablo & Catharine" />
+    <meta name="twitter:description" content="Nossa história, galeria, música e mensagens em um site especial." />
+    <meta name="twitter:image" content="assets/img/hero.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a href="#home" class="brand">Pablo & Catharine</a>
+        <div class="links">
+          <a href="#home">Início</a>
+          <a href="#story">Nossa História</a>
+          <a href="#gallery">Galeria</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Home -->
+      <section id="home" class="section hero">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1 class="title">Feliz 3 Meses de Namoro!</h1>
+            <h2 class="subtitle">Pablo & Catharine</h2>
+            <p class="romance">Que nosso amor continue crescendo a cada dia ✨</p>
+              <div class="together">
+              <p class="together-label">Dias juntos desde <span id="togetherStartLabel">15/08/2025</span></p>
+              <div class="countdown together-count" aria-label="Dias juntos e equivalente em calendário">
+                <div class="count-item"><span id="tg-days-total">--</span><small>dias</small></div>
+                <div class="count-item"><span id="tg-months">--</span><small>meses</small></div>
+                <div class="count-item"><span id="tg-days-cal">--</span><small>dias</small></div>
+              </div>
+              <!-- Contador mantido; controles de início removidos conforme solicitado -->
+            </div>
+            <div class="music-player">
+              <!-- Música fixa -->
+              <audio id="audio" preload="auto" data-src="assets/music/sua-musica.mp3" autoplay loop playsinline></audio>
+              <div class="controls">
+                <button id="playPause" class="btn primary"><i class="icon-play"></i>Retomar Música</button>
+                <button id="stopMusic" class="btn ghost"><i class="icon-stop"></i>Parar</button>
+                <div class="volume">
+                  <span>Volume</span>
+                  <input type="range" id="volume" min="0" max="1" step="0.01" value="0.8" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-photo">
+            <img src="assets/img/hero.JPG" alt="Foto romântica de Pablo e Catharine" loading="eager" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Nossa História -->
+      <section id="story" class="section story">
+        <h3 class="section-title">Nossa História</h3>
+        <div class="story-intro">
+          <p><strong>É amor,</strong></p>
+          <p>
+            Amanhã completamos mais um mês juntos, e hoje decidi te fazer essa surpresa. Não só amanhã, mas todos os dias eu me sinto um homem realizado por ter uma mulher como você ao meu lado. Sou feliz apenas por ter você na minha vida.
+          </p>
+          <p>
+            Quero você em todos os meus sonhos e planos, e não há dificuldade ou barreira que me faça desistir de nós. Por você e com você, eu farei de tudo, porque eu te amo.
+          </p>
+          <p>
+            Amo o seu jeito, amo quando você entorta a boca kkk, amo o seu sorriso… amo tudo em você. Amo chegar, te abraçar, te beijar e sentir você nos meus braços. Mal posso esperar pelo dia em que poderei fazer isso todos os dias, sem precisar me despedir aos domingos.
+          </p>
+          <p>
+            Há tanta coisa aqui dentro que eu nem consigo expressar em palavras… Mas, para resumir tudo isso, eu só quero ser o homem que vai te fazer feliz, cuidar de você e te fazer se sentir segura.
+          </p>
+          <p>
+            Eu te amo, meu amor. E, como disse a Deus, que Ele faça de você a mulher da minha vida, assim como eu quero ser o homem da sua. 🤎
+          </p>
+        </div>
+        <div class="timeline" id="timeline">
+          <div class="event active" data-date="Dia 1" data-title="Primeiro Encontro" data-text="O começo de tudo, olhares e sorrisos."></div>
+          <div class="event" data-date="Mês 1" data-title="Primeiro Mês" data-text="Descobertas, cumplicidade e muitos risos."></div>
+          <div class="event" data-date="Mês 2" data-title="Viagem Juntos" data-text="Memórias inesquecíveis e fotos lindíssimas."></div>
+          <div class="event" data-date="Mês 3" data-title="Celebração" data-text="Três meses de amor e alegria! 💖"></div>
+        </div>
+        
+      </section>
+
+      <!-- Galeria -->
+      <section id="gallery" class="section gallery">
+        <h3 class="section-title">Galeria de Momentos</h3>
+        <div class="grid">
+          <img src="assets/img/gallery-1.JPG" alt="Momento 1" class="grid-item" loading="lazy" />
+          <img src="assets/img/gallery-2.svg" alt="Momento 2" class="grid-item" loading="lazy" />
+          <img src="assets/img/gallery-3.JPG" alt="Momento 3" class="grid-item" loading="lazy" />
+          <img src="assets/img/gallery-5.JPG" alt="Momento 5" class="grid-item" loading="lazy" />
+          <img src="assets/img/gallery-6.JPG" alt="Momento 6" class="grid-item" loading="lazy" />
+        </div>
+        <div id="lightbox" class="lightbox hidden">
+          <button class="close" id="lbClose" aria-label="Fechar">×</button>
+          <button class="prev" id="lbPrev" aria-label="Anterior">‹</button>
+          <img id="lbImg" alt="Foto ampliada" />
+          <button class="next" id="lbNext" aria-label="Próxima">›</button>
+        </div>
+      </section>
+
+      <!-- Depoimentos -->
+      <section id="testimonials" class="section testimonials">
+        <h3 class="section-title">Depoimentos</h3>
+        <div class="quotes" id="quotes">
+          <blockquote class="quote active">“Ao seu lado, cada dia é especial.”</blockquote>
+          <blockquote class="quote">“Três meses que parecem eternos no melhor sentido.”</blockquote>
+          <blockquote class="quote">“Você é meu lugar seguro e meu sorriso favorito.”</blockquote>
+        </div>
+        <div class="quote-nav">
+          <button class="btn ghost" id="prevQuote">Anterior</button>
+          <button class="btn ghost" id="nextQuote">Próximo</button>
+        </div>
+      </section>
+
+      
+
+      
+    </main>
+
+    <footer class="site-footer">
+      <p>Feito com amor para Pablo & Catharine — celebrando 3 meses de felicidade.</p>
+    </footer>
+
+    <script src="assets/js/main.js?v=3" defer></script>
+  </body>
+  </html>
