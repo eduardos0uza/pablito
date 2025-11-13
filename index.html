@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Entrada — Surpresa Especial</title>
+    <meta name="description" content="Uma surpresa especial para a pessoa mais importante da minha vida." />
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <style>
+      /* Página de Entrada */
+      body { min-height: 100vh; display: grid; place-items: center; }
+      .entry-wrap { width: 100%; padding: 20px; }
+      .entry-card {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+        background: rgba(255,255,255,.08);
+        border: 1px solid rgba(255,255,255,.16);
+        border-radius: 22px;
+        padding: 28px 24px;
+        box-shadow: var(--shadow);
+      }
+      .entry-title {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(30px, 7vw, 64px);
+        color: #fff;
+        margin: 8px 0 14px;
+        text-shadow: 0 6px 18px rgba(0,0,0,.3);
+      }
+      .entry-sub { color: #eaeaf0; margin-bottom: 18px; }
+      .entry-actions { display: flex; justify-content: center; }
+      .btn.primary { font-size: 18px; padding: 12px 18px; }
+
+      /* Transição suave ao sair */
+      .fade-out {
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity .5s ease, transform .5s ease;
+      }
+
+      /* Responsivo ajustes leves */
+      @media (max-width: 680px) {
+        .entry-card { padding: 22px 18px; }
+        .btn.primary { width: 100%; max-width: 340px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="entry-wrap">
+      <div id="entryCard" class="entry-card">
+        <h1 class="entry-title">uma surpresa especial para a pessoa mais importante da minha vida</h1>
+        <p class="entry-sub">Prepare o coração — vai valer a pena ✨</p>
+        <div class="entry-actions">
+          <button id="entryBtn" class="btn primary">Clique aqui</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const btn = document.getElementById('entryBtn');
+      const card = document.getElementById('entryCard');
+      btn.addEventListener('click', () => {
+        // Transição suave antes de redirecionar
+        card.classList.add('fade-out');
+        setTimeout(() => { window.location.href = 'main.html'; }, 500);
+      });
+    </script>
+  </body>
+</html>
