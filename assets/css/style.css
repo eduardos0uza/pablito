@@ -136,6 +136,23 @@ body {
   text-align: center;
 }
 .story-intro p { margin: 8px 0; }
+.love-card {
+  max-width: 800px;
+  margin: 0 auto 20px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+}
+.love-card .love-title {
+  color: var(--accent);
+  font-weight: 700;
+  margin: 0 0 8px;
+  text-align: center;
+}
+.love-card p { margin: 8px 0; color: #eaeaf0; }
 .btn i { margin-right: 6px; font-style: normal; }
 .icon-play::before { content: "▶"; }
 .icon-pause::before { content: "⏸"; }
