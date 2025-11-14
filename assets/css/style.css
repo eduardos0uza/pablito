@@ -95,6 +95,17 @@ body {
 .lightbox .close { top: 12%; right: 4%; transform: none; }
 .lightbox .prev { left: 4%; }
 .lightbox .next { right: 4%; }
+/* Lightbox animação suave */
+.lightbox.show { animation: lbFade .22s ease-out; }
+.lightbox img.lb-anim { animation: lbZoom .22s ease-out forwards; }
+@keyframes lbFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes lbZoom {
+  from { opacity: 0; transform: scale(.98); }
+  to { opacity: 1; transform: scale(1); }
+}
 
 /* Testimonials */
 .quotes { position: relative; overflow: hidden; min-height: 64px; }

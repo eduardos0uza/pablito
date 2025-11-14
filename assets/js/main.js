@@ -217,12 +217,24 @@ function openLightbox(idx) {
   currentIdx = idx;
   lbImg.src = gridItems()[idx].src;
   lb.classList.remove('hidden');
+  lb.classList.add('show');
+  // reativar animação da imagem
+  lbImg.classList.remove('lb-anim');
+  // força reflow para reiniciar animação
+  void lbImg.offsetWidth;
+  lbImg.classList.add('lb-anim');
 }
-function closeLightbox() { lb.classList.add('hidden'); }
+function closeLightbox() {
+  lb.classList.remove('show');
+  lb.classList.add('hidden');
+}
 function changeLightbox(delta) {
   const items = gridItems();
   currentIdx = (currentIdx + delta + items.length) % items.length;
   lbImg.src = items[currentIdx].src;
+  lbImg.classList.remove('lb-anim');
+  void lbImg.offsetWidth;
+  lbImg.classList.add('lb-anim');
 }
 function setupGallery() {
   gridItems().forEach((img, i) => img.addEventListener('click', () => openLightbox(i)));
