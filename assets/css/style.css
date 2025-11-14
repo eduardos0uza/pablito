@@ -56,7 +56,9 @@ body {
 .btn.primary { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: white; }
 .btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,.18); }
 .btn:hover { filter: brightness(1.06); }
-.hero-photo img { width: 100%; border-radius: 18px; box-shadow: var(--shadow); border: 2px solid rgba(255,255,255,.14); }
+.hero-photo img,
+.hero-photo picture,
+.hero-photo picture img { width: 100%; border-radius: 18px; box-shadow: var(--shadow); border: 2px solid rgba(255,255,255,.14); }
 .music-player .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 
 /* Intro Overlay */

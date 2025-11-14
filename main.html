@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css" />
-    
+    <script src="https://unpkg.com/heic2any/dist/heic2any.min.js" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -68,7 +68,7 @@
             </div>
           </div>
           <div class="hero-photo">
-            <img src="assets/img/hero.jpg" alt="Foto romântica de Pablo e Catharine" loading="eager" />
+            <img src="assets/img/hero.jpg" alt="Foto romântica de Pablo e Catharine" loading="eager" onerror="this.onerror=null;this.src='assets/img/hero.svg';" />
           </div>
         </div>
       </section>
@@ -107,17 +107,18 @@
       <section id="gallery" class="section gallery">
         <h3 class="section-title">Galeria de Momentos</h3>
         <div class="grid">
-          <img src="assets/img/gallery-1.jpg" alt="Momento 1" class="grid-item" loading="lazy" />
-          <img src="assets/img/gallery-2.jpg" alt="Momento 2" class="grid-item" loading="lazy" />
-          <img src="assets/img/gallery-3.jpg" alt="Momento 3" class="grid-item" loading="lazy" />
-          <img src="assets/img/gallery-5.jpg" alt="Momento 5" class="grid-item" loading="lazy" />
-          <img src="assets/img/gallery-6.jpg" alt="Momento 6" class="grid-item" loading="lazy" />
+          <!-- <img src="assets/img/gallery-1.png" alt="Momento 1" class="grid-item" /> -->
+          <img src="assets/img/gallery-2.jpg" alt="Momento 2" class="grid-item" />
+          <img src="assets/img/gallery-3.JPG" alt="Momento 3" class="grid-item" />
+          <img src="assets/img/gallery-4.jpg" alt="Momento 4" class="grid-item" decoding="async" />
+          <img src="assets/img/gallery-5.JPG" alt="Momento 5" class="grid-item" />
+          <img src="assets/img/gallery-6.JPG" alt="Momento 6" class="grid-item" />
           <!-- Novas fotos adicionadas -->
-          <img src="assets/img/gallery-7.jpg" alt="Close carinhoso no rosto" class="grid-item" loading="lazy" decoding="async" />
-          <img src="assets/img/gallery-8.jpg" alt="Abraço ao sol com tatuagem" class="grid-item" loading="lazy" decoding="async" />
-          <img src="assets/img/gallery-9.jpg" alt="Selfie alegre juntos" class="grid-item" loading="lazy" decoding="async" />
-          <img src="assets/img/gallery-10.jpg" alt="Carinho aconchegante — rosto coladinho" class="grid-item" loading="lazy" decoding="async" />
-          <img src="assets/img/gallery-11.jpg" alt="Selfie sorridente — nós dois juntinhos" class="grid-item" loading="lazy" decoding="async" />
+          <img src="assets/img/gallery-7.jpg" alt="Close carinhoso no rosto" class="grid-item" decoding="async" />
+          <img src="assets/img/gallery-8.jpg" alt="Abraço ao sol com tatuagem" class="grid-item" decoding="async" />
+          <img src="assets/img/gallery-9.jpg" alt="Selfie alegre juntos" class="grid-item" decoding="async" />
+          <img src="assets/img/gallery-10.jpg" alt="Carinho aconchegante — rosto coladinho" class="grid-item" decoding="async" />
+          <img src="assets/img/gallery-11.jpg" alt="Selfie sorridente — nós dois juntinhos" class="grid-item" decoding="async" />
         </div>
         <div id="lightbox" class="lightbox hidden">
           <button class="close" id="lbClose" aria-label="Fechar">×</button>

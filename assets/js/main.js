@@ -253,27 +253,82 @@ function setupGallery() {
 // Fallback robusto para carregamento de imagens (corrige extensão/capitalização)
 function setupGalleryFallback() {
   gridItems().forEach((img) => {
-    let tried = false;
-    img.addEventListener('error', () => {
-      if (tried) return;
-      tried = true;
+    let started = false;
+    const startFallback = () => {
+      if (started) return;
+      started = true;
       const src = img.getAttribute('src') || '';
       const candidates = [];
-      if (src.endsWith('.JPG')) candidates.push(src.replace(/\.JPG$/i, '.jpg'));
-      if (src.endsWith('.jpg')) candidates.push(src.replace(/\.jpg$/i, '.JPG'));
-      if (src.endsWith('.jpeg') === false) candidates.push(src.replace(/\.(JPG|jpg)$/i, '.jpeg'));
-      // tentar em ordem
+      if (/\.HEIC$/i.test(src)) {
+        const convertHeic = async () => {
+          try {
+            if (!window.heic2any) { img.src = 'assets/img/hero.svg'; return; }
+            const res = await fetch(src);
+            const buf = await res.arrayBuffer();
+            const blob = new Blob([buf], { type: 'image/heic' });
+            const out = await window.heic2any({ blob, toType: 'image/jpeg', quality: 0.9 });
+            const url = URL.createObjectURL(out);
+            img.src = url;
+            img.style.display = '';
+          } catch (_) {
+            img.src = 'assets/img/hero.svg';
+          }
+        };
+        convertHeic();
+        return;
+      }
+      if (/\.JPG$/i.test(src)) candidates.push(src.replace(/\.JPG$/i, '.jpg'));
+      if (/\.jpg$/i.test(src)) candidates.push(src.replace(/\.jpg$/i, '.JPG'));
+      if (!/\.jpeg$/i.test(src)) candidates.push(src.replace(/\.(JPG|jpg)$/i, '.jpeg'));
+      if (!/\.png$/i.test(src)) candidates.push(src.replace(/\.(JPG|jpg|jpeg)$/i, '.png'));
+      if (!/\.webp$/i.test(src)) candidates.push(src.replace(/\.(JPG|jpg|jpeg|png)$/i, '.webp'));
       const tryNext = () => {
         const next = candidates.shift();
-        if (!next) { img.style.display = 'none'; return; }
+        if (!next) { img.src = 'assets/img/hero.svg'; img.style.display = ''; return; }
         const probe = new Image();
         probe.onload = () => { img.src = next; img.style.display = ''; };
         probe.onerror = tryNext;
         probe.src = next;
       };
       tryNext();
-    }, { once: true });
+    };
+    img.addEventListener('error', startFallback, { once: true });
+    if (img.complete && img.naturalWidth === 0) startFallback();
   });
+}
+
+// Fallback para imagem principal (hero)
+function setupHeroFallback() {
+  const heroImg = document.querySelector('.hero-photo img, .hero-photo picture img');
+  if (!heroImg) return;
+  let tried = false;
+  const handleFallback = () => {
+    if (tried) return;
+    tried = true;
+    const src = heroImg.getAttribute('src') || '';
+    const candidates = [];
+    // Tentar alternância de capitalização e outras extensões compatíveis
+    if (src.endsWith('.jpg')) candidates.push(src.replace(/\.jpg$/i, '.JPG'));
+    if (src.endsWith('.JPG')) candidates.push(src.replace(/\.JPG$/i, '.jpg'));
+    if (!/\.jpeg$/i.test(src)) candidates.push(src.replace(/\.(jpg|JPG)$/i, '.jpeg'));
+    // Fallback final para SVG quando JPG/JPEG falharem
+    if (!/\.svg$/i.test(src)) candidates.push(src.replace(/\.(jpg|JPG|jpeg)$/i, '.svg'));
+    const tryNext = () => {
+      const next = candidates.shift();
+      if (!next) return;
+      const probe = new Image();
+      probe.onload = () => { heroImg.src = next; };
+      probe.onerror = tryNext;
+      probe.src = next;
+    };
+    tryNext();
+  };
+  // se o erro ocorrer depois que o listener estiver ativo
+  heroImg.addEventListener('error', handleFallback, { once: true });
+  // se o erro já tiver acontecido antes do listener (Safari/iOS)
+  if (heroImg.complete && heroImg.naturalWidth === 0) {
+    handleFallback();
+  }
 }
 
 // Depoimentos simples
@@ -390,6 +445,7 @@ function init() {
   setupTimeline();
   setupGallery();
   setupGalleryFallback();
+  setupHeroFallback();
   setupQuotes();
   setupMap();
   setupMessages();
