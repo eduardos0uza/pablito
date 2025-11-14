@@ -250,6 +250,32 @@ function setupGallery() {
   });
 }
 
+// Fallback robusto para carregamento de imagens (corrige extensão/capitalização)
+function setupGalleryFallback() {
+  gridItems().forEach((img) => {
+    let tried = false;
+    img.addEventListener('error', () => {
+      if (tried) return;
+      tried = true;
+      const src = img.getAttribute('src') || '';
+      const candidates = [];
+      if (src.endsWith('.JPG')) candidates.push(src.replace(/\.JPG$/i, '.jpg'));
+      if (src.endsWith('.jpg')) candidates.push(src.replace(/\.jpg$/i, '.JPG'));
+      if (src.endsWith('.jpeg') === false) candidates.push(src.replace(/\.(JPG|jpg)$/i, '.jpeg'));
+      // tentar em ordem
+      const tryNext = () => {
+        const next = candidates.shift();
+        if (!next) { img.style.display = 'none'; return; }
+        const probe = new Image();
+        probe.onload = () => { img.src = next; img.style.display = ''; };
+        probe.onerror = tryNext;
+        probe.src = next;
+      };
+      tryNext();
+    }, { once: true });
+  });
+}
+
 // Depoimentos simples
 const quotes = () => $$('#quotes .quote');
 const prevQuote = $('#prevQuote');
@@ -363,6 +389,7 @@ function init() {
   ['pointerdown','keydown','touchstart'].forEach(evt => document.addEventListener(evt, () => { if (audio?.paused) tryAutoplay(); }, { once: true }));
   setupTimeline();
   setupGallery();
+  setupGalleryFallback();
   setupQuotes();
   setupMap();
   setupMessages();
